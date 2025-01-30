@@ -208,7 +208,7 @@ void alterarFuncionario(estruturafuncionario *funcionario, int numdefuncionarios
             return;
         }
     }
-    if(encontrado==1){
+    if(encontrado==0){
     printf("Funcionario com ID %d não encontrado.\n", idParaAlterar);
                     }
 }
