@@ -48,7 +48,6 @@ void salvarfuncionario(estruturafuncionario *funcionario,int numdefuncionarios,c
             fprintf(arq_funcionarios, "ID: %d\n", funcionario[i].idfuncionario);
             }
     fclose(arq_funcionarios);
-    printf("Os dados dos funcionarios cadastrados foram salvos com sucesso.\n");
 }
 
     //funcao para verificar se Id ja existe
@@ -96,7 +95,7 @@ void adicionarfuncionario(estruturafuncionario **funcionario, int *numdefunciona
                 printf("ID inválido. Tente novamente.\n");
                 continue;
             }
-        if(verificarId((*funcionario)[i].idfuncionario))
+        if(verificarId((*funcionario)[i].idfuncionario) || ((*funcionario)[i].idfuncionario == (*funcionario)[i-1].idfuncionario))
                 {
                 printf("Já existe um funcionario com esse ID. Tente novamente.\n");
                 continue;
@@ -174,7 +173,6 @@ void alterarFuncionario(estruturafuncionario *funcionario, int numdefuncionarios
     printf("Informe o ID do funcionario que deseja alterar: ");
     scanf("%d", &idParaAlterar);
     getchar();
-    int encontrado=0;
     for (int i = 0; i < numdefuncionarios; i++) {
         if (funcionario[i].idfuncionario == idParaAlterar) {
             printf("Informe o novo nome do funcionario: ");
@@ -203,14 +201,14 @@ void alterarFuncionario(estruturafuncionario *funcionario, int numdefuncionarios
             strcpy(funcionario[i].nomefuncionario, novoNome);
 
             funcionario[i].idfuncionario = novoId;
-            encontrado=1;
             printf("Dados do funcionario alterados com sucesso.\n");
             return;
         }
+    
     }
-    if(encontrado==0){
+   
     printf("Funcionario com ID %d não encontrado.\n", idParaAlterar);
-                    }
+                    
 }
 
     //funcao para deletarFuncionario 
@@ -283,7 +281,9 @@ int main(){
             estruturafuncionario *funcionario = alocarEstruturaFuncionario(numdefuncionarios);
             adicionarfuncionario(&funcionario, &numdefuncionarios);
             salvarfuncionario(funcionario, numdefuncionarios,"a");
+            printf("Os dados dos funcionarios cadastrados foram salvos com sucesso.\n");
             liberarMemorias(funcionario, numdefuncionarios);
+            
             break;
     
 //chamada para visualizar funcionarios   
