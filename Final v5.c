@@ -1177,7 +1177,7 @@ void setorentrega(){
     while(1){
 
     int setor=0;
-    printf("\nDigite em qual setor deseja entrar: \n\n 1: Funcionarios \n 2: Clientes \n 3: Veiculos \n 4: Entregas \n 5: Sair Do Programa \n\n ");
+    printf("\nDigite em qual setor deseja entrar: \n\n 1: Funcionarios \n 2: Clientes \n 3: Veiculos \n 4: Entregas \n 5: Exibir Relatorios Das Entregas \n 6: Sair Do Programa \n\n");
     scanf("%d",&setor);
     switch(setor){
        case 1: 
@@ -1196,7 +1196,11 @@ void setorentrega(){
        setorentrega();
        break;
 
-        case 5: 
+       case 5: 
+       VisualizarDadosNoArquivo(ENTREGA);
+       break;
+
+        case 6: 
           exit(0);
     }
     }
